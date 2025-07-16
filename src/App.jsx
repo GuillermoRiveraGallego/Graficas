@@ -5,6 +5,7 @@ import GraficaLineaLeyenda from "./components/graficas/GraficaLineaLeyenda.jsx";
 import { ChartRadarCostes } from "./components/graficas/GraficaRadarChart.jsx";
 import { Button } from "@/components/ui/button";
 import GraficaDonutP from "./components/graficas/GraficaDonutPeque.jsx";
+import GraficaLineaLeyendaShadcn from "./components/graficas/GraficaLineaLeyendaShadcn.jsx";
 
 const dataCostesTotales = [
   { name: "Coste Adquisición", value: 3735000 },
@@ -15,13 +16,16 @@ const dataCostesTotales = [
 ];
 
 const dataEvolucionCostes = [
-  { time: "2025-01-01", value: 2500000 },
+  { time: "2025-01-01", value: 250000 },
+  { time: "2025-01-05", value: 2500000 },
+  { time: "2025-01-15", value: 2500000 },
   { time: "2025-02-01", value: 2750000 },
   { time: "2025-03-01", value: 2900000 },
   { time: "2025-04-01", value: 3100000 },
   { time: "2025-05-01", value: 3300000 },
   { time: "2025-06-01", value: 3400000 },
   { time: "2025-07-01", value: 3800000 },
+  { time: "2025-08-01", value: 6800000 },
 ];
 
 function App() {
@@ -62,6 +66,12 @@ function App() {
           >
             Línea
           </Button>
+          <Button
+            onClick={() => setGraficaActiva("linea2")}
+            variant={graficaActiva === "linea2" ? "default" : "outline"}
+          >
+            Línea2
+          </Button>
         </div>
 
         {/* Render dinámico de la gráfica */}
@@ -99,13 +109,19 @@ function App() {
           )}
 
           {graficaActiva === "linea" && (
-            <div className="w-full max-w-4xl">
-              <GraficaLineaLeyenda
-                title="Evolución Costes"
-                data={dataEvolucionCostes}
-                color="#00fff4"
-              />
-            </div>
+            <GraficaLineaLeyenda
+              title="Evolución Costes"
+              data={dataEvolucionCostes}
+              color="#00fff4"
+            />
+          )}
+
+          {graficaActiva === "linea2" && (
+            <GraficaLineaLeyendaShadcn
+              title="Evolución Costes"
+              data={dataEvolucionCostes}
+              color="#00fff4"
+            />
           )}
         </div>
       </main>
