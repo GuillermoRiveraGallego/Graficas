@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import GraficaDonutP from "./components/graficas/GraficaDonutPeque.jsx";
 import GraficaLineaLeyendaShadcn from "./components/graficas/GraficaLineaLeyendaShadcn.jsx";
 import GraficaRadial from "./components/graficas/GraficaRadial.jsx";
+import GraficaPieChart from "./components/graficas/GraficaPieChart.jsx";
 
 const dataCostesTotales = [
   { name: "Coste Adquisición", value: 3735000 },
@@ -54,6 +55,12 @@ function App() {
             variant={graficaActiva === "bar" ? "default" : "outline"}
           >
             Barras
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("piechart")}
+            variant={graficaActiva === "piechart" ? "default" : "outline"}
+          >
+            piechart
           </Button>
 
           <Button
@@ -118,6 +125,13 @@ function App() {
           )}
           {graficaActiva === "radial" && (
             <GraficaRadial
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+          {graficaActiva === "piechart" && (
+            <GraficaPieChart
               title="Costes del proyecto"
               description="Distribución global"
               data={dataCostesTotales}
