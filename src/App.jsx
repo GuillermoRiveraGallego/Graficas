@@ -6,6 +6,7 @@ import { ChartRadarCostes } from "./components/graficas/GraficaRadarChart.jsx";
 import { Button } from "@/components/ui/button";
 import GraficaDonutP from "./components/graficas/GraficaDonutPeque.jsx";
 import GraficaLineaLeyendaShadcn from "./components/graficas/GraficaLineaLeyendaShadcn.jsx";
+import GraficaRadial from "./components/graficas/GraficaRadial.jsx";
 
 const dataCostesTotales = [
   { name: "Coste Adquisición", value: 3735000 },
@@ -54,23 +55,31 @@ function App() {
           >
             Barras
           </Button>
+
           <Button
             onClick={() => setGraficaActiva("radar")}
             variant={graficaActiva === "radar" ? "default" : "outline"}
           >
             Radar
           </Button>
+
           <Button
-            onClick={() => setGraficaActiva("linea")}
-            variant={graficaActiva === "linea" ? "default" : "outline"}
+            onClick={() => setGraficaActiva("radial")}
+            variant={graficaActiva === "radial" ? "default" : "outline"}
           >
-            Línea
+            radial
           </Button>
           <Button
             onClick={() => setGraficaActiva("linea2")}
             variant={graficaActiva === "linea2" ? "default" : "outline"}
           >
             Línea2
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("linea")}
+            variant={graficaActiva === "linea" ? "default" : "outline"}
+          >
+            Línea
           </Button>
         </div>
 
@@ -107,17 +116,22 @@ function App() {
               data={dataCostesTotales}
             />
           )}
-
-          {graficaActiva === "linea" && (
-            <GraficaLineaLeyenda
+          {graficaActiva === "radial" && (
+            <GraficaRadial
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+          {graficaActiva === "linea2" && (
+            <GraficaLineaLeyendaShadcn
               title="Evolución Costes"
               data={dataEvolucionCostes}
               color="#00fff4"
             />
           )}
-
-          {graficaActiva === "linea2" && (
-            <GraficaLineaLeyendaShadcn
+          {graficaActiva === "linea" && (
+            <GraficaLineaLeyenda
               title="Evolución Costes"
               data={dataEvolucionCostes}
               color="#00fff4"
