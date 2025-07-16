@@ -1,7 +1,10 @@
+import { useState } from "react";
 import GraficaBarChart from "./components/graficas/GraficaBarChart.jsx";
 import GraficaDonutChart from "./components/graficas/GraficaDonutActive.jsx";
 import GraficaLineaLeyenda from "./components/graficas/GraficaLineaLeyenda.jsx";
 import { ChartRadarCostes } from "./components/graficas/GraficaRadarChart.jsx";
+import { Button } from "@/components/ui/button";
+import GraficaDonutP from "./components/graficas/GraficaDonutPeque.jsx";
 
 const dataCostesTotales = [
   { name: "Coste Adquisición", value: 3735000 },
@@ -11,7 +14,7 @@ const dataCostesTotales = [
   { name: "Coste Financiero", value: 2120000 },
 ];
 
-export const dataEvolucionCostes = [
+const dataEvolucionCostes = [
   { time: "2025-01-01", value: 2500000 },
   { time: "2025-02-01", value: 2750000 },
   { time: "2025-03-01", value: 2900000 },
@@ -22,34 +25,88 @@ export const dataEvolucionCostes = [
 ];
 
 function App() {
+  const [graficaActiva, setGraficaActiva] = useState("donut");
+
   return (
-    <div className="flex  bg-white">
+    <div className="flex bg-white min-h-screen">
       <main className="flex-1 p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-[100%] mx-auto">
-          <GraficaDonutChart
-            title="Costes del proyecto"
-            description="Distribución global"
-            data={dataCostesTotales}
-          />
-
-          <GraficaBarChart
-            title="Costes del proyecto"
-            description="Distribución global"
-            data={dataCostesTotales}
-          />
-
-          <ChartRadarCostes
-            title="Costes del proyecto"
-            description="Distribución global"
-            data={dataCostesTotales}
-          />
+        {/* Barra de botones */}
+        <div className="flex gap-4 justify-center mb-10">
+          <Button
+            onClick={() => setGraficaActiva("donut")}
+            variant={graficaActiva === "donut" ? "default" : "outline"}
+          >
+            Donut
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("donutP")}
+            variant={graficaActiva === "donutP" ? "default" : "outline"}
+          >
+            DonutP
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("bar")}
+            variant={graficaActiva === "bar" ? "default" : "outline"}
+          >
+            Barras
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("radar")}
+            variant={graficaActiva === "radar" ? "default" : "outline"}
+          >
+            Radar
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("linea")}
+            variant={graficaActiva === "linea" ? "default" : "outline"}
+          >
+            Línea
+          </Button>
         </div>
-        <div className="mt-10 w-1/2 ">
-          <GraficaLineaLeyenda
-            title="Evolución Costes"
-            data={dataEvolucionCostes}
-            color="#00fff4"
-          />
+
+        {/* Render dinámico de la gráfica */}
+        <div className="flex justify-center">
+          {graficaActiva === "donut" && (
+            <GraficaDonutChart
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+
+          {graficaActiva === "donutP" && (
+            <GraficaDonutP
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+
+          {graficaActiva === "bar" && (
+            <GraficaBarChart
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+
+          {graficaActiva === "radar" && (
+            <ChartRadarCostes
+              title="Costes del proyecto"
+              description="Distribución global"
+              data={dataCostesTotales}
+            />
+          )}
+
+          {graficaActiva === "linea" && (
+            <div className="w-full max-w-4xl">
+              <GraficaLineaLeyenda
+                title="Evolución Costes"
+                data={dataEvolucionCostes}
+                color="#00fff4"
+              />
+            </div>
+          )}
         </div>
       </main>
     </div>

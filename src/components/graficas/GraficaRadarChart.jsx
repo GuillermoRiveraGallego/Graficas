@@ -33,7 +33,7 @@ export function ChartRadarCostes({ title, description, data }) {
   };
 
   return (
-    <Card className="w-full sm:w-[500px]">
+    <Card className="flex flex-col w-full max-w-[500px]">
       <CardHeader className="items-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -41,7 +41,7 @@ export function ChartRadarCostes({ title, description, data }) {
       <CardContent className="pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-w-[400px]"
+          className="w-full aspect-[4/3] px-2"
         >
           <RadarChart data={chartData} outerRadius={110}>
             <ChartTooltip

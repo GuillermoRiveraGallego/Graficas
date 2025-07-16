@@ -30,7 +30,7 @@ const GraficaBarChart = ({ title, description, data }) => {
   }));
 
   return (
-    <Card>
+    <Card className="flex flex-col w-full max-w-[500px]">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

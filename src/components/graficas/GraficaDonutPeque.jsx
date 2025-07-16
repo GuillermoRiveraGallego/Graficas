@@ -14,7 +14,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const GraficaDonutChart = ({ title, description, data }) => {
+const GraficaDonutP = ({ title, description, data }) => {
   const colores = [
     "hsl(var(--chart-1))",
     "hsl(var(--chart-2))",
@@ -55,7 +55,7 @@ const GraficaDonutChart = ({ title, description, data }) => {
   });
 
   return (
-    <Card className="flex flex-col w-full max-w-[500px]">
+    <Card className="flex flex-col w-full max-w-[350px]">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -63,7 +63,7 @@ const GraficaDonutChart = ({ title, description, data }) => {
 
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <PieChart width={400} height={300}>
+          <PieChart width={200} height={200}>
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
@@ -72,14 +72,15 @@ const GraficaDonutChart = ({ title, description, data }) => {
               data={chartData}
               dataKey="value"
               nameKey="name"
-              innerRadius={75}
+              innerRadius={50}
+              outerRadius={80}
               stroke="none"
               isAnimationActive={false}
             >
               <Label
                 value={`${total.toLocaleString()} m²`}
                 position="center"
-                style={{ fontSize: "20px", fontWeight: "bold" }}
+                style={{ fontSize: "12px", fontWeight: "bold" }}
               />
             </Pie>
           </PieChart>
@@ -106,4 +107,4 @@ const GraficaDonutChart = ({ title, description, data }) => {
   );
 };
 
-export default GraficaDonutChart;
+export default GraficaDonutP;
