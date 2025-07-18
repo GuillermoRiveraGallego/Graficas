@@ -29,6 +29,17 @@ const dataEvolucionCostes = [
   { time: "2025-06-01", value: 3400000 },
   { time: "2025-07-01", value: 3800000 },
   { time: "2025-08-01", value: 6800000 },
+  { time: "2025-01-01", value: 250000 },
+  { time: "2025-01-05", value: 2500000 },
+  { time: "2025-01-15", value: 2500000 },
+  { time: "2025-02-01", value: 2750000 },
+  { time: "2025-03-01", value: 2900000 },
+  { time: "2025-04-01", value: 3100000 },
+  { time: "2025-05-01", value: 3300000 },
+  { time: "2025-06-01", value: 3400000 },
+  { time: "2025-07-01", value: 3800000 },
+  { time: "2025-08-01", value: 6800000 },
+  
 ];
 
 const datosComparados = [
@@ -57,7 +68,7 @@ const datosComparados = [
     A: 2500,
     B: 10,
   },
-   {
+  {
     name: "Coste extra",
     A: 1000,
     B: 2500,
