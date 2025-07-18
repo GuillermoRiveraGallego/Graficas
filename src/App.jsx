@@ -8,6 +8,7 @@ import GraficaDonutP from "./components/graficas/GraficaDonutPeque.jsx";
 import GraficaLineaLeyendaShadcn from "./components/graficas/GraficaLineaLeyendaShadcn.jsx";
 import GraficaRadial from "./components/graficas/GraficaRadial.jsx";
 import GraficaPieChart from "./components/graficas/GraficaPieChart.jsx";
+import GraficaBarChartMultiple from "./components/graficas/GraficaBarChartMultiple.jsx";
 
 const dataCostesTotales = [
   { name: "Coste Adquisición", value: 3735000 },
@@ -28,6 +29,39 @@ const dataEvolucionCostes = [
   { time: "2025-06-01", value: 3400000 },
   { time: "2025-07-01", value: 3800000 },
   { time: "2025-08-01", value: 6800000 },
+];
+
+const datosComparados = [
+  {
+    name: "Coste Adquisición",
+    A: 11500,
+    B: 1400,
+  },
+  {
+    name: "Coste Construcción",
+    A: 2500,
+    B: 2400,
+  },
+  {
+    name: "Costes Generales",
+    A: 500,
+    B: 500,
+  },
+  {
+    name: "Coste Estructuración",
+    A: 10,
+    B: 15,
+  },
+  {
+    name: "Coste Financiero",
+    A: 2500,
+    B: 10,
+  },
+   {
+    name: "Coste extra",
+    A: 1000,
+    B: 2500,
+  },
 ];
 
 function App() {
@@ -75,6 +109,12 @@ function App() {
             variant={graficaActiva === "radial" ? "default" : "outline"}
           >
             radial
+          </Button>
+          <Button
+            onClick={() => setGraficaActiva("comparation")}
+            variant={graficaActiva === "comparation" ? "default" : "outline"}
+          >
+            comparation
           </Button>
           <Button
             onClick={() => setGraficaActiva("linea2")}
@@ -148,6 +188,13 @@ function App() {
             <GraficaLineaLeyenda
               title="Evolución Costes"
               data={dataEvolucionCostes}
+              color="#00fff4"
+            />
+          )}
+          {graficaActiva === "comparation" && (
+            <GraficaBarChartMultiple
+              title="Evolución Costes"
+              data={datosComparados}
               color="#00fff4"
             />
           )}
